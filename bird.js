@@ -10,8 +10,8 @@ class Bird {
 		
 		this.img1 = new Image();
 		this.img2 = new Image();
-		this.img1.src = "./assets/bird1.png";
-		this.img2.src = "./assets/bird2.png";
+		this.img1.src = "./assets/bird1.PNG";
+		this.img2.src = "./assets/bird2.PNG";
 		this.animation = [this.img1, this.img2];
 		this.frameNum = 0;
 		this.cntF = 0;
