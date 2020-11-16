@@ -11,23 +11,23 @@ class Car {
 		this.animation = [];
 		this.carNum = Math.floor(Math.random()* Math.floor(3));
 		if (this.carNum == 0) {
-			this.img1.src = "./assets/car1B.png";
-			this.img2.src = "./assets/car2B.png";
+			this.img1.src = "./assets/car1B.PNG";
+			this.img2.src = "./assets/car2B.PNG";
 			
 			this.animation.push(this.img1);
 			this.animation.push(this.img2);
 			
 		}
 		else if (this.carNum == 1) {
-			this.img1.src = "./assets/car1G.png";
-			this.img2.src = "./assets/car2G.png";
+			this.img1.src = "./assets/car1G.PNG";
+			this.img2.src = "./assets/car2G.PNG";
 			
 			this.animation.push(this.img1);
 			this.animation.push(this.img2);
 		}
 		else {
-			this.img1.src = "./assets/car1R.png";
-			this.img2.src = "./assets/car2R.png";
+			this.img1.src = "./assets/car1R.PNG";
+			this.img2.src = "./assets/car2R.PNG";
 			
 			this.animation.push(this.img1);
 			this.animation.push(this.img2);
