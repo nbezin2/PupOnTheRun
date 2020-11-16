@@ -6,7 +6,7 @@ class Treat {
 		this.height = 17;
 		this.dx = -4;
 		this.img = new Image();
-		this.img.src = "./assets/treat.png";
+		this.img.src = "./assets/treat.PNG";
 		this.eaten = false;
 	}
 	
