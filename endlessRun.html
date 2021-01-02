@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf=8" />
+	<title>Enless Runner</title>
+	<style>
+		*{ padding: 0; margin: 0;}
+		canvas { background: white; display: block; margin: 0 auto; }
+	</style>
+</head>
+<body>
+<canvas id="Canvas" width="680" height="420"></canvas>
+<script src="Background.js"></script>
+<script src="poop.js"></script>
+<script src="Dogcatcher.js"></script>
+<script src="bird.js"></script>
+<script src="player.js"></script>
+<script src="house.js"></script>
+<script src="cloud.js"></script>
+<script src="treat.js"></script>
+<script src="trashCan.js"></script>
+<script src="car.js"></script>
+<script src="obstacle.js"></script>
+
+<script> 
+	var canvas = document.getElementById("Canvas");
+	var ctx = canvas.getContext("2d");
+	var scene = 1;
+	var kU = false;
+	var foodStored = 0;
+	var poo = false;
+	var hit = false;
+	var bird = new Bird();
+	var gravity = 0.9;
+	var p1 = new Player(gravity);
+	var poops = [];
+	var pStored = new Poop(canvas.width-60, canvas.height-25, 0, 1);
+	var trts = [new Treat()];
+	var houses = [];
+	var obstacles = new Obstacle();
+	var catcher = new Dogcatcher();
+	var background = new Background();
+	
+	for (var i=0; i < 3; i++) {
+		houses.push(new House(i));
+	}
+	var cld = new Cloud();
+	
+	document.addEventListener("keydown", keyDownHandler, false);
+	document.addEventListener("keyup", keyUpHandler, false);
+	
+	function keyDownHandler(e) {
+		if (e.key == "Up" || e.key == "ArrowUp") {
+			kU = true;
+		}
+		if (e.keyCode == 32) {
+			poo = true;
+		}
+	}
+	
+	function keyUpHandler(e) {
+		if (e.key == "Up" || e.key == "ArrowUp") {
+			kU = false;
+		}
+		if (e.keyCode == 32) {
+			poo = false;
+		}
+	}
+	
+	function checkControls() {		
+		if (kU) {
+			if (!p1.jumping) {
+				p1.jump();
+			}
+		}
+	}	
+	
+	function checkFloor() {
+		if (!hit) {
+			obstacles.checkFloor(p1)
+		}
+	}
+	
+	function hitBird(b, p) {
+		if (p.getX()+p.getWidth() >= b.getX() && p.getX() <= b.getX()+b.getWidth() && p.getY()+p.getHeight() >= b.getY() && p.getY() <= b.getY()+b.getHeight()) {
+			b.setHit();
+			console.log("bird hit");
+		}
+	}
+	
+	function tripDCatcher(c, p) {
+		if (p.getX()+p.getWidth() >= c.getX() && p.getX() <= c.getX()+c.getWidth() && p.getY()+p.getHeight() >= c.getY() && p.getY() <= c.getY()+c.getHeight()) {
+			c.setSlipped();
+			p.poopSquish();
+		}
+	}
+	
+	function draw() {
+		ctx.clearRect(0,0, canvas.width, canvas.height);
+		background.show();
+		cld.show();
+		if (scene == 1) {
+			
+			
+			cld.updatePos();
+			
+			for (var i=0; i < 3; i++) {
+				houses[i].show();
+				houses[i].updatePos();
+			}
+			p1.show();
+			checkControls();
+			
+			pStored.show();
+			ctx.font = "20px Arial";
+			ctx.fillStyle = "White";
+			ctx.fillText("= "+foodStored, canvas.width-30, canvas.height-10);
+			
+			trts[0].show();
+			trts[0].updatePos();
+			if (trts[0].checkEaten(p1)) {
+				foodStored++;
+			}
+			
+			if (foodStored >= 1 && poo) {
+				poo = false;
+				foodStored -= 1;
+				poops.push(new Poop(p1.getX(), p1.getY()+10, p1.getYV(), 0));
+			}
+			
+			if (poops.length >= 1) {
+				for (let i = 0; i < poops.length; i++) {
+					hitBird(bird, poops[i]);
+					tripDCatcher(catcher, poops[i]);
+					if (poops[i].getX() <= -50) {
+						poops.splice(i,1);
+					}
+					else {
+						poops[i].show();
+						poops[i].updatePos();
+					}
+				}
+			}
+			
+			checkFloor();
+			p1.updatePos();
+			
+			obstacles.show();
+			obstacles.updatePos();
+			if (obstacles.checkCollision(p1)) {
+				scene = 2;
+			}
+			
+			bird.show();
+			bird.updatePos();
+			catcher.show();
+			catcher.updatePos();
+		}
+		else if (scene == 2) {
+			console.log("game over");
+			
+			for (var i=0; i < 3; i++) {
+				houses[i].show();
+			}
+			catcher.show();
+			p1.show();
+			trts[0].show();
+			bird.show();
+			obstacles.show();
+		}
+	}
+	
+	setInterval(draw, 10);
+</script>
+
+</body>
+</html>

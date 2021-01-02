@@ -4,7 +4,7 @@ class Cloud {
 		this.yPos = 0;
 		this.dx = -0.2;
 		this.img = new Image();
-		this.img.src = './assets/cloud.PNG';
+		this.img.src = './assets/cloud.png';
 	}
 	
 	updatePos() {

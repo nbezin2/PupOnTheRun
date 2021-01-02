@@ -11,23 +11,23 @@ class Car {
 		this.animation = [];
 		this.carNum = Math.floor(Math.random()* Math.floor(3));
 		if (this.carNum == 0) {
-			this.img1.src = "./assets/car1B.PNG";
-			this.img2.src = "./assets/car2B.PNG";
+			this.img1.src = "./assets/car1B.png";
+			this.img2.src = "./assets/car2B.png";
 			
 			this.animation.push(this.img1);
 			this.animation.push(this.img2);
 			
 		}
 		else if (this.carNum == 1) {
-			this.img1.src = "./assets/car1G.PNG";
-			this.img2.src = "./assets/car2G.PNG";
+			this.img1.src = "./assets/car1G.png";
+			this.img2.src = "./assets/car2G.png";
 			
 			this.animation.push(this.img1);
 			this.animation.push(this.img2);
 		}
 		else {
-			this.img1.src = "./assets/car1R.PNG";
-			this.img2.src = "./assets/car2R.PNG";
+			this.img1.src = "./assets/car1R.png";
+			this.img2.src = "./assets/car2R.png";
 			
 			this.animation.push(this.img1);
 			this.animation.push(this.img2);
@@ -59,16 +59,16 @@ class Car {
 			this.xPos = canvas.width+Math.floor(Math.random()*Math.floor(250));
 			this.carNum = Math.floor(Math.random()* Math.floor(3));
 			if (this.carNum == 0) {
-				this.img1.src = "./assets/car1B.PNG";
-				this.img2.src = "./assets/car2B.PNG";
+				this.img1.src = "./assets/car1B.png";
+				this.img2.src = "./assets/car2B.png";
 			}
 			else if (this.carNum == 1) {
-				this.img1.src = "./assets/car1G.PNG";
-				this.img2.src = "./assets/car2G.PNG";
+				this.img1.src = "./assets/car1G.png";
+				this.img2.src = "./assets/car2G.png";
 			}
 			else {
-				this.img1.src = "./assets/car1R.PNG";
-				this.img2.src = "./assets/car2R.PNG";
+				this.img1.src = "./assets/car1R.png";
+				this.img2.src = "./assets/car2R.png";
 			}
 			this.animation[0] = this.img1;
 			this.animation[1] = this.img2;
@@ -79,9 +79,10 @@ class Car {
 	}
 	
 	show() {
+		
 		ctx.beginPath();
 		ctx.drawImage(this.animation[this.frameNum], this.xPos, this.yPos, this.width, this.height);
-		
+		ctx.closePath();
 		/*ctx.moveTo(this.xPos, this.yPos+50);
 		ctx.lineTo(this.xPos+this.width, this.yPos+50);
 		ctx.moveTo(this.xPos+78, this.yPos);

@@ -16,6 +16,10 @@ class Poop {
 		this.img.src = "./assets/poop1T.png";
 	}
 	
+	poopSquish() {
+		this.img.src = "./assets/poopSquishT.png";
+	}
+	
 	getX() {
 		return this.xPos;
 	}
