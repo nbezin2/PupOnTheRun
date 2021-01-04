@@ -39,7 +39,9 @@ class Dogcatcher {
 	}
 	
 	setSlipped() {
+		console.log("Trip value should be true");
 		this.slipped = true;
+		console.log(this.slipped);
 	}
 	
 	updatePos() {
