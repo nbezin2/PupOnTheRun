@@ -89,7 +89,9 @@
 	}
 	
 	function tripDCatcher(c, p) {
+		console.log("Checking if poop hit dog catcher");
 		if (p.getX()+p.getWidth() >= c.getX() && p.getX() <= c.getX()+c.getWidth() && p.getY()+p.getHeight() >= c.getY() && p.getY() <= c.getY()+c.getHeight()) {
+			console.log("Poop hit dog catcher and he will slip");
 			c.setSlipped();
 			p.poopSquish();
 		}
