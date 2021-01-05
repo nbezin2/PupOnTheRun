@@ -81,21 +81,27 @@
 		}
 	}
 	
-	function hitBird(b, p) {
+	function hitBird(c, b, p) {
 		if (p.getX()+p.getWidth() >= b.getX() && p.getX() <= b.getX()+b.getWidth() && p.getY()+p.getHeight() >= b.getY() && p.getY() <= b.getY()+b.getHeight()) {
 			b.setHit();
 			console.log("bird hit");
 		}
-	}
-	
-	function tripDogCatcher(c, p) {
-		console.log("Checking if poop hit dog catcher");
+		
 		if (p.getX()+p.getWidth() >= c.getX() && p.getX() <= c.getX()+c.getWidth() && p.getY()+p.getHeight() >= c.getY() && p.getY() <= c.getY()+c.getHeight()) {
 			console.log("Poop hit dog catcher and he will slip");
 			c.setSlipped();
 			p.poopSquish();
 		}
 	}
+	
+	/*function tripDogCatcher(c, p) {
+		console.log("Checking if poop hit dog catcher");
+		if (p.getX()+p.getWidth() >= c.getX() && p.getX() <= c.getX()+c.getWidth() && p.getY()+p.getHeight() >= c.getY() && p.getY() <= c.getY()+c.getHeight()) {
+			console.log("Poop hit dog catcher and he will slip");
+			c.setSlipped();
+			p.poopSquish();
+		}
+	}*/
 	
 	function draw() {
 		ctx.clearRect(0,0, canvas.width, canvas.height);
@@ -132,8 +138,8 @@
 			
 			if (poops.length >= 1) {
 				for (let i = 0; i < poops.length; i++) {
-					hitBird(bird, poops[i]);
-					tripDogCatcher(catcher, poops[i]);
+					hitBird(catcher, bird, poops[i]);
+					//tripDogCatcher(catcher, poops[i]);
 					if (poops[i].getX() <= -50) {
 						poops.splice(i,1);
 					}
