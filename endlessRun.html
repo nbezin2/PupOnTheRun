@@ -88,7 +88,7 @@
 		}
 	}
 	
-	function tripDCatcher(c, p) {
+	function tripDogCatcher(c, p) {
 		console.log("Checking if poop hit dog catcher");
 		if (p.getX()+p.getWidth() >= c.getX() && p.getX() <= c.getX()+c.getWidth() && p.getY()+p.getHeight() >= c.getY() && p.getY() <= c.getY()+c.getHeight()) {
 			console.log("Poop hit dog catcher and he will slip");
@@ -133,7 +133,7 @@
 			if (poops.length >= 1) {
 				for (let i = 0; i < poops.length; i++) {
 					hitBird(bird, poops[i]);
-					tripDCatcher(catcher, poops[i]);
+					tripDogCatcher(catcher, poops[i]);
 					if (poops[i].getX() <= -50) {
 						poops.splice(i,1);
 					}
