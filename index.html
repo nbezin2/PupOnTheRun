@@ -11,9 +11,10 @@
 <body>
 	
 	<h1>PUP ON THE RUN</h1>
-	<p1>Controls:</p1>
-	<p1>UP ARROW: Jump</p1>
-	<p1>SPACEBAR: Poop</p1>
+	<div class="w3-container">
+		<p>Play as a dog that has escaped from the pound. Sprinting down the street you must jump over the obstacles in your way.</p> 
+		<p>Eat treats along the way so you can make the dog catcher slip on your poop.</p>
+	</div>	
 	
 <canvas id="Canvas" width="900" height="420"></canvas>
 <script src="Background.js"></script>
@@ -100,15 +101,6 @@
 		}
 	}
 	
-	/*function tripDogCatcher(c, p) {
-		console.log("Checking if poop hit dog catcher");
-		if (p.getX()+p.getWidth() >= c.getX() && p.getX() <= c.getX()+c.getWidth() && p.getY()+p.getHeight() >= c.getY() && p.getY() <= c.getY()+c.getHeight()) {
-			console.log("Poop hit dog catcher and he will slip");
-			c.setSlipped();
-			p.poopSquish();
-		}
-	}*/
-	
 	function draw() {
 		ctx.clearRect(0,0, canvas.width, canvas.height);
 		background.show();
@@ -186,8 +178,11 @@
 	
 	setInterval(draw, 10);
 </script>
-
-<p2>Play as a dog that has escaped from the pound. Sprinting down the street you must jump over the obstacles in your way, eating treats along the way so you can make the dog catcher slip on your poop.</p2>
+	<div class="w3-container">
+		<p1>Controls:</p1>
+		<p2>UP ARROW: Jump</p2>
+		<p2>SPACEBAR: Poop</p2>
+	</div>
 	
 </body>
 </html>
